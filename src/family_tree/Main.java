@@ -16,6 +16,9 @@ public class Main {
         if (tree == null) tree = Tree();    // Создать новое древо
 
         System.out.println(tree);
+        tree.sortByName();
+        tree.sortByAge();
+        tree.sortById();
 
         fileHandler.save(tree, filePath); // Сохранить древо в файл
     }
@@ -24,11 +27,11 @@ public class Main {
         FamilyTree tree = new FamilyTree();
 
         Human oleg = new Human("Янковский Олег Иванович", LocalDate.of(1944, 2, 23), Gender.Male);
-        Human ludmila = new Human("Зорина Людмила Александровна", LocalDate.of(1941, 5, 1), Gender.Female);
-        Human philipp = new Human("Филипп Олегович", LocalDate.of(1968, 10, 10), Gender.Male, ludmila, oleg);
-        Human oksana = new Human("Оксана Олеговна", LocalDate.of(1967, 11, 7), Gender.Female);
-        Human john = new Human("Иван Филиппович", LocalDate.of(1990, 10, 30), Gender.Male);
-        Human elizabeth = new Human("Елизавета Филипповна", LocalDate.of(1995, 5, 1), Gender.Female);
+        Human ludmila = new Human("Янковская Зорина Людмила Александровна", LocalDate.of(1941, 5, 1), Gender.Female);
+        Human philipp = new Human("Янковский Филипп Олегович", LocalDate.of(1968, 10, 10), Gender.Male, ludmila, oleg);
+        Human oksana = new Human("Янковская Оксана Олеговна", LocalDate.of(1967, 11, 7), Gender.Female);
+        Human john = new Human("Янковский Иван Филиппович", LocalDate.of(1990, 10, 30), Gender.Male);
+        Human elizabeth = new Human("Янковская Елизавета Филипповна", LocalDate.of(1995, 5, 1), Gender.Female);
 
         tree.add(oleg);
         tree.add(ludmila);

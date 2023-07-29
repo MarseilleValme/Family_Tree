@@ -1,12 +1,16 @@
 package family_tree.family_tree;
 
 import family_tree.human.Human;
+import family_tree.human.comparators.HumanComparatorByAge;
+import family_tree.human.comparators.HumanComparatorById;
+import family_tree.human.comparators.HumanComparatorByName;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class FamilyTree implements Serializable {
+public class FamilyTree implements Serializable, Iterable<Human> {
     private long humansId;
     private List<Human> humans;
 
@@ -114,9 +118,9 @@ public class FamilyTree implements Serializable {
     }
 
 
-    public String getInfo(){
+    public String getInfo(String title){
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("В дереве ");
+        stringBuilder.append(title);
         stringBuilder.append(humans.size());
         stringBuilder.append(" объектов: \n");
         for (Human human: humans){
@@ -127,7 +131,22 @@ public class FamilyTree implements Serializable {
     }
 
     @Override
-    public String toString() { return getInfo(); }
-
+    public String toString() { return getInfo("В дереве "); }
+    @Override
+    public Iterator<Human> iterator() {
+        return new HumanIterator(humans);
+    }
+    public void sortByName() {
+        humans.sort(new HumanComparatorByName());
+        System.out.println(getInfo("Отсортировано по ФИО "));
+    }
+    public void sortByAge() {
+        humans.sort(new HumanComparatorByAge());
+        System.out.println(getInfo("Отсортировано по возрасту "));
+    }
+    public void sortById() {
+        humans.sort(new HumanComparatorById());
+        System.out.println(getInfo("Отсортировано по номеру "));
+    }
 }
 
