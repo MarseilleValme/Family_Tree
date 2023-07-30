@@ -1,24 +1,19 @@
-package family_tree.human;
-
-import family_tree.family_tree.TreeItem;
-
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Human implements Serializable, TreeItem<Human> {
+public class Dog {
     private long id;
     private String name;
     private LocalDate dateOfBirth;
     private LocalDate dateOfDeath;
-    private Gender gender;
-    private List<Human> parents;
-    private Human spouse;
-    private List<Human> children;
+    private Gender gender; //При реализации дописать-доимпортировать Gender;
+    private List<Dog> parents;
+    private List<Dog> partners;
+    private List<Dog> children;
 
-    public Human(String name, LocalDate dateOfBirth, LocalDate dateOfDeath, Gender gender, Human mother, Human father, Human spouse) {
+    public Dog(String name, LocalDate dateOfBirth, LocalDate dateOfDeath, Gender gender, Dog mother, Dog father, Dog partner) {
         id = -1;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
@@ -29,16 +24,17 @@ public class Human implements Serializable, TreeItem<Human> {
         if (father != null) parents.add(father);
         if (mother != null) parents.add(mother);
 
-        if (spouse != null) this.spouse = spouse;
+	partners = new ArrayList<>();
+        if (partner != null) partners.add(partner);
 
         children = new ArrayList<>();
     }
 
-    public Human(String name, LocalDate dateOfBirth, Gender gender){
+    public Dog(String name, LocalDate dateOfBirth, Gender gender){
         this(name, dateOfBirth, null, gender, null, null, null);
     }
 
-    public Human(String name, LocalDate dateOfBirth, Gender gender, Human mother, Human father){
+    public Dog(String name, LocalDate dateOfBirth, Gender gender, Dog mother, Dog father){
         this(name, dateOfBirth, null, gender, mother, father, null);
     }
 
@@ -65,36 +61,36 @@ public class Human implements Serializable, TreeItem<Human> {
 
     public Gender getGender() {return gender;}
 
-    public Human getMother() {
-        for (Human parent: parents)
+    public Dog getMother() {
+        for (Dog parent: parents)
             if (parent.getGender() == Gender.Female)
                 return parent;
 
         return null;
     }
 
-    public Human getFather() {
-        for (Human parent: parents)
+    public Dog getFather() {
+        for (Dog parent: parents)
             if (parent.getGender() == Gender.Male)
                 return parent;
 
         return null;
     }
 
-    public List<Human> getParents() {return parents; }
+    public List<Dog> getParents() {return parents; }
 
-    public List<Human> getChildren() {return children; }
+    public List<Dog> getChildren() {return children; }
 
-    public Human findChild(String name) {
-        for (Human child: children) {
+    public Dog findChild(String name) {
+        for (Dog child: children) {
             if (child.getName().equalsIgnoreCase(name))
                 return child;
         }
         return null;
     }
 
-    public Human getSpouse() {
-        return spouse;
+    public List<Dog> getPartners() {
+            return partners;
     }
 
     //---------------------------Setters-------------------------------------------
@@ -104,7 +100,7 @@ public class Human implements Serializable, TreeItem<Human> {
 
     public void setDateOfDeath(LocalDate dateOfDeath) {this.dateOfDeath = dateOfDeath;}
 
-    public boolean addParent(Human parent){
+    public boolean addParent(Dog parent){
         if (!parents.contains(parent)){
             parents.add(parent);
             return true;
@@ -112,9 +108,15 @@ public class Human implements Serializable, TreeItem<Human> {
         return false;
     }
 
-    public void setSpouse(Human spouse) {this.spouse = spouse;}
+    public boolean addPartners(Dog partner){
+        if (!partners.contains(partner)){
+            partners.add(partner);
+            return true;
+        }
+        return false;
+    }
 
-    public boolean addChild(Human child){
+    public boolean addChild(Dog child){
         if (!children.contains(child)){
             children.add(child);
             return true;
@@ -135,13 +137,13 @@ public class Human implements Serializable, TreeItem<Human> {
         sb.append(", ");            sb.append(getMotherInfo());
         sb.append(", ");            sb.append(getFatherInfo());
         sb.append(", ");            sb.append(getChildrenInfo());
-        sb.append(", ");            sb.append(getSpouseInfo());
+        sb.append(", ");            sb.append(getPartnersInfo());
         return sb.toString();
     }
 
     public String getMotherInfo(){
         String res = "мать: ";
-        Human mother = getMother();
+        Dog mother = getMother();
         if (mother == null) res += " — ";
         else res += mother.getName();
         return res;
@@ -149,7 +151,7 @@ public class Human implements Serializable, TreeItem<Human> {
 
     public String getFatherInfo(){
         String res = "отец: ";
-        Human father = getFather();
+        Dog father = getFather();
         if (father == null) res += " — ";
         else res += father.getName();
         return res;
@@ -172,19 +174,29 @@ public class Human implements Serializable, TreeItem<Human> {
         return res.toString();
     }
 
-    public String getSpouseInfo(){
-        String res = "супруг(а): ";
-        if (spouse == null) res += " — ";
-        else res += spouse.getName();
-        return res;
+    public String getPartnersInfo(){
+        StringBuilder res = new StringBuilder();
+        res.append("партнеры: ");
+
+        if (partners.size() != 0){
+            res.append(partners.get(0).getName());
+
+            for (int i = 1; i < partners.size(); i++) {
+                res.append(", ");
+                res.append(partners.get(i).getName());
+            }
+        }
+        else res.append(" — ");
+
+        return res.toString();
     }
 
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (!(obj instanceof Human)) return false;
+        if (!(obj instanceof Dog)) return false;
 
-        Human human = (Human) obj;
-        return human.getId() == getId();
+        Dog dog = (Dog) obj;
+        return dog.getId() == getId();
     }
 }
