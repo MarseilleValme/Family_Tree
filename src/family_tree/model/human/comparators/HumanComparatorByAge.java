@@ -1,7 +1,6 @@
-package family_tree.human.comparators;
-import family_tree.family_tree.PersonIterator;
-import family_tree.family_tree.TreeItem;
-import family_tree.human.Human;
+package family_tree.model.human.comparators;
+import family_tree.model.family_tree.TreeItem;
+
 import java.util.Comparator;
 public class HumanComparatorByAge<E extends TreeItem> implements Comparator<E>{
     @Override

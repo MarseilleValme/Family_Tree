@@ -1,6 +1,6 @@
-package family_tree.family_tree;
+package family_tree.model.family_tree;
 
-import family_tree.human.comparators.*;
+import family_tree.model.human.comparators.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -139,8 +139,6 @@ public class FamilyTree<E extends TreeItem<E>> implements Serializable, Iterable
     public void sortByAge() {
         humans.sort(new HumanComparatorByAge<>());
     }
-    public void sortById() {
-        humans.sort(new HumanComparatorById<>());
-    }
+    public void sortById() { humans.sort(new HumanComparatorById<>()); }
 }
 

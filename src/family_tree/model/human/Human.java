@@ -1,6 +1,6 @@
-package family_tree.human;
+package family_tree.model.human;
 
-import family_tree.family_tree.TreeItem;
+import family_tree.model.family_tree.TreeItem;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -41,6 +41,8 @@ public class Human implements Serializable, TreeItem<Human> {
     public Human(String name, LocalDate dateOfBirth, Gender gender, Human mother, Human father){
         this(name, dateOfBirth, null, gender, mother, father, null);
     }
+
+
 
     //---------------------------Getters-------------------------------------------
     public long getId() {return id;}
