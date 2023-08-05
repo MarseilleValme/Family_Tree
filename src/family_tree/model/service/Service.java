@@ -13,9 +13,6 @@ public class Service {
     private FamilyTree<Human> tree;
 
     public Service(){
-//        tree = new FamilyTree<>();
-        FamilyTree tree = Tree(); // Создать новое древо
-        System.out.println(tree.getInfo());
     }
 
     public void addHuman(String name, LocalDate dateOfBirth){
@@ -34,13 +31,8 @@ public class Service {
 
     public String getTreeInfo(){ return tree.getInfo(); }
     public void load(){
-        String filePath = "src/family_tree/model/data/tree.out";
-        FileHandler fileHandler = new FileHandler();
-        FamilyTree tree = (FamilyTree) fileHandler.load(filePath);
-
+        tree = (FamilyTree) fileHandler.load(filePath);
         if (tree == null) tree = Tree();
-
-        System.out.println(tree);  //ДЛЯ ПРОВЕРКИ!! ПОСЛЕ ФИКСА - УДАЛИТЬ!!!
     }
 
     public void save(){
