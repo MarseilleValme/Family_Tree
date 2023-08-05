@@ -43,12 +43,16 @@ public class ConsoleUI implements View{
         presenter.sortByAge();
     }
 
-    public void sortByName() {
-        presenter.sortByName();
+    public void sortByName() { presenter.sortByName();
     }
 
-    public void sortById() {
-        presenter.sortById();
+    public void sortById() { presenter.sortById();
+    }
+    public void remove() {
+        System.out.println("Введите Id удаляемой записи");
+        String is = scanner.nextLine();
+        long id = Integer.parseInt(is);
+        presenter.remove(id);
     }
 
     public void getHumansListInfo() {
@@ -63,7 +67,10 @@ public class ConsoleUI implements View{
         String dob = scanner.nextLine();
         LocalDate date = LocalDate.parse(dob);
 
-        presenter.addHuman(name, date);
+        System.out.println("Введите пол (Male/Female)");
+        String pol = scanner.nextLine();
+
+        presenter.addHuman(name, date, pol);
     }
 
     public void load() {

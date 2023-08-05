@@ -15,8 +15,12 @@ public class Service {
     public Service(){
     }
 
-    public void addHuman(String name, LocalDate dateOfBirth){
-        Human human = new Human(name, dateOfBirth, null, null, null, null, null);
+    public void addHuman(String name, LocalDate dateOfBirth, String pol){
+        Gender gender = null;
+        if (pol.equalsIgnoreCase("Male"))
+            gender = Gender.Male;
+        else gender = Gender.Female;
+        Human human = new Human(name, dateOfBirth, null, gender, null, null, null);
         tree.add(human);
     }
     public void sortByName(){ tree.sortByName(); }

@@ -14,8 +14,8 @@ public class Presenter {
         service = new Service();
     }
 
-    public void addHuman(String name, LocalDate dateOfBirth){
-        service.addHuman(name, dateOfBirth);
+    public void addHuman(String name, LocalDate dateOfBirth, String pol){
+        service.addHuman(name, dateOfBirth, pol);
         getHumansListInfo();
     }
 

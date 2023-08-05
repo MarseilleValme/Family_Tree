@@ -105,7 +105,7 @@ public class FamilyTree<E extends TreeItem<E>> implements Serializable, Iterable
 //                return true;
     }
 
-    public boolean remove(long id){
+    public boolean remove(long humansId){
         if (checkId(humansId)){
             E person = getById(humansId);
             return humans.remove(person);
