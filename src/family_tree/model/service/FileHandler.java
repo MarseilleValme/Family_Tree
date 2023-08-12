@@ -3,7 +3,8 @@ package family_tree.model.service;
 import java.io.*;
 
 public class FileHandler implements Writable{
-    public boolean save(Serializable serializable, String filePath){
+    private String filePath = "src/family_tree/model/data/tree.out";
+    public boolean save(Serializable serializable){
         try (ObjectOutputStream objOut = new ObjectOutputStream(new FileOutputStream(filePath))) {
             objOut.writeObject(serializable);
             return true;
@@ -14,7 +15,7 @@ public class FileHandler implements Writable{
         }
     }
 
-    public Object load(String filePath) {
+    public Object load() {
         try (ObjectInputStream objInput = new ObjectInputStream(new FileInputStream(filePath))) {
             return objInput.readObject();
         }

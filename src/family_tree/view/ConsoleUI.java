@@ -73,6 +73,29 @@ public class ConsoleUI implements View{
         presenter.addHuman(name, date, pol);
     }
 
+    public void setWedding() {
+        System.out.println("Введите id 1-го супруга");
+        String input = scanner.nextLine();
+        long id1 = Long.parseLong(input);
+
+        System.out.println("Введите id 2-го супруга");
+        input = scanner.nextLine();
+        long id2 = Long.parseLong(input);
+
+        presenter.setWedding(id1, id2);
+    }
+
+    public void setDivorce() {
+        System.out.println("Введите id 1-го супруга");
+        String input = scanner.nextLine();
+        long id1 = Long.parseLong(input);
+
+        System.out.println("Введите id 2-го супруга");
+        input = scanner.nextLine();
+        long id2 = Long.parseLong(input);
+
+        presenter.setDivorce(id1, id2);
+    }
     public void load() {
         presenter.load();
     }
