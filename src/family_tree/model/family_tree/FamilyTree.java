@@ -141,4 +141,3 @@ public class FamilyTree<E extends TreeItem<E>> implements Serializable, Iterable
     }
     public void sortById() { humans.sort(new HumanComparatorById<>()); }
 }
-

@@ -1,5 +1,6 @@
 package family_tree.presenter;
 
+
 import family_tree.model.service.FileHandler;
 import family_tree.model.service.Writable;
 import family_tree.view.View;
@@ -7,15 +8,16 @@ import family_tree.model.service.Service;
 
 import java.time.LocalDate;
 
+
 public class Presenter {
     private View view;
     private Service service;
 
-    private Writable writable = new FileHandler();
+//    private Writable fileHandler = new FileHandler();
 
     public Presenter(View view) {
         this.view = view;
-        service = new Service(writable);
+        service = new Service();
     }
 
     public void addHuman(String name, LocalDate dateOfBirth, String pol){
@@ -44,6 +46,12 @@ public class Presenter {
 
     public void setDivorce(long id1, long id2) {
         service.setDivorce(id1, id2);
+    }
+
+    public void addChild(long id1, long id2) { service.addChild(id1, id2);
+    }
+
+    public void addParent(long id1, long id2) { service.addParent(id1, id2);
     }
 
     public void load(){

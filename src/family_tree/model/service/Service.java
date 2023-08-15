@@ -8,15 +8,14 @@ import java.time.LocalDate;
 
 public class Service {
     private long id;
-    private Writable writable;
+    private Writable fileHandler = new FileHandler();
     private FamilyTree<Human> tree;
 
-    public Service(Writable writable){
-        this.writable = writable;
+    public Service(){
     }
 
     public void addHuman(String name, LocalDate dateOfBirth, String pol){
-        Gender gender = null;
+        Gender gender;
         if (pol.equalsIgnoreCase("Male"))
             gender = Gender.Male;
         else gender = Gender.Female;
@@ -33,15 +32,27 @@ public class Service {
 
     public void setDivorce(long id1, long id2){  tree.setDivorce(id1, id2);  }
 
+    public void addParent(long id1, long id2){
+            Human child = tree.getById(id1);
+            Human parent = tree.getById(id2);
+        child.addParent(parent);
+    }
+
+    public void addChild(long id1, long id2){
+        Human parent = tree.getById(id1);
+        Human child = tree.getById(id2);
+        parent.addChild(child);
+    }
+
     public String getTreeInfo(){ return tree.getInfo(); }
     public void load(){
-        tree = (FamilyTree) writable.load();
+        tree = (FamilyTree) fileHandler.load();
 //        if (tree == null) tree = Tree();
     }
 
     public void save(){
 //        fileHandler.save(tree);
-        if (writable.save(tree)) System.out.println("Файл успешно сохранён");
+        if (fileHandler.save(tree)) System.out.println("Файл успешно сохранён");
     }
 
     //—————————————————————————————————КОСТЫЛЬ ДЛЯ ОТЛАДКИ—————————————————————————————————————————

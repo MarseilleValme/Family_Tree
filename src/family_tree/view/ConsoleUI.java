@@ -39,6 +39,8 @@ public class ConsoleUI implements View{
         work = false;
     }
 
+    
+
     public void sortByAge() {
         presenter.sortByAge();
     }
@@ -95,6 +97,30 @@ public class ConsoleUI implements View{
         long id2 = Long.parseLong(input);
 
         presenter.setDivorce(id1, id2);
+    }
+
+    public void addParent() {
+        System.out.println("Введите id потомка");
+        String input = scanner.nextLine();
+        long idChild = Long.parseLong(input);
+
+        System.out.println("Введите id предка");
+        input = scanner.nextLine();
+        long idParent = Long.parseLong(input);
+
+        presenter.addParent(idChild, idParent);
+    }
+
+    public void addChild() {
+        System.out.println("Введите id предка");
+        String input = scanner.nextLine();
+        long idParent = Long.parseLong(input);
+
+        System.out.println("Введите id потомка/дочери");
+        input = scanner.nextLine();
+        long idChild = Long.parseLong(input);
+
+        presenter.addChild(idParent, idChild);
     }
     public void load() {
         presenter.load();
