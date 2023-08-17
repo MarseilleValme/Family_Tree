@@ -8,10 +8,11 @@ import java.time.LocalDate;
 
 public class Service {
     private long id;
-    private Writable fileHandler = new FileHandler();
+    private Writable writable;
     private FamilyTree<Human> tree;
 
-    public Service(){
+    public Service(Writable writable){
+        this.writable = writable;
     }
 
     public void addHuman(String name, LocalDate dateOfBirth, String pol){
@@ -46,13 +47,12 @@ public class Service {
 
     public String getTreeInfo(){ return tree.getInfo(); }
     public void load(){
-        tree = (FamilyTree) fileHandler.load();
+        tree = (FamilyTree) writable.load();
 //        if (tree == null) tree = Tree();
     }
 
     public void save(){
-//        fileHandler.save(tree);
-        if (fileHandler.save(tree)) System.out.println("Файл успешно сохранён");
+        if (writable.save(tree)) System.out.println("Файл успешно сохранён");
     }
 
     //—————————————————————————————————КОСТЫЛЬ ДЛЯ ОТЛАДКИ—————————————————————————————————————————

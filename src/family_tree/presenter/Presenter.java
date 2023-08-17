@@ -13,12 +13,13 @@ public class Presenter {
     private View view;
     private Service service;
 
-//    private Writable fileHandler = new FileHandler();
 
     public Presenter(View view) {
         this.view = view;
-        service = new Service();
+        Writable writable = new FileHandler();
+        service = new Service(writable);
     }
+
 
     public void addHuman(String name, LocalDate dateOfBirth, String pol){
         service.addHuman(name, dateOfBirth, pol);
