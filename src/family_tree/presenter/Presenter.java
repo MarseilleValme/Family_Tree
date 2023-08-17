@@ -2,7 +2,6 @@ package family_tree.presenter;
 
 
 import family_tree.model.service.FileHandler;
-import family_tree.model.service.Writable;
 import family_tree.view.View;
 import family_tree.model.service.Service;
 
@@ -13,11 +12,9 @@ public class Presenter {
     private View view;
     private Service service;
 
-
     public Presenter(View view) {
         this.view = view;
-        Writable writable = new FileHandler();
-        service = new Service(writable);
+        service = new Service(new FileHandler());
     }
 
 

@@ -97,13 +97,7 @@ public class FamilyTree<E extends TreeItem<E>> implements Serializable, Iterable
         return false;
     }
 
-    private boolean checkId(long id){ return getById(id) != null;
-//        if (id >= humansId || id < 0) return false;
-//
-////        for (Human human: humans)
-////            if (human.getId() == id)
-//                return true;
-    }
+    private boolean checkId(long id){ return getById(id) != null; }
 
     public boolean remove(long humansId){
         if (checkId(humansId)){
